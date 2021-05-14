@@ -1,0 +1,12 @@
+name: DarkRP
+version: ${project.version}
+main: darkrp.DarkRP
+authors: [ CoronaCreeper ]
+description: Plugin na RP dla DarkRP
+commands:
+  zmiana:
+  med:
+  discord:
+  rp:
+  regulamin:
+  wymiana:
