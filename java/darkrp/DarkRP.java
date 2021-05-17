@@ -35,20 +35,17 @@ public final class DarkRP extends JavaPlugin implements Listener {
         getCommand("discord").setExecutor(new DiscordCommand());
         System.out.println("[DarkRP] Loaded /discord command");
 
-        getCommand("wymiana").setExecutor(new WymianaCommand());
-        System.out.println("[DarkRP] Loaded /wymiana command");
-
-        getCommand("set").setExecutor(new SetCommand());
-        System.out.println("[DarkRP] Loaded /set command");
-
-        getCommand("dowod").setExecutor(new DowodCommand());
-        System.out.println("[DarkRP] Loaded /dowod command");
-
         getCommand("onAdmin").setExecutor(new onAdminCommand());
         System.out.println("[DarkRP] Loaded /onAdmin command");
 
         getCommand("offAdmin").setExecutor(new offAdminCommand());
         System.out.println("[DarkRP] Loaded /offAdmin command");
+
+        getCommand("plecak").setExecutor(new PlecakCommand());
+        System.out.println("[DarkRP] Loaded /plecak command");
+
+        getCommand("invsee").setExecutor(new invseeCommand());
+        System.out.println("[DarkRP] Loaded /invsee command");
     }
 
     @Override

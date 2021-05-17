@@ -8,9 +8,7 @@ commands:
   discord:
   rp:
   regulamin:
-  wymiana:
-  set:
-  dowod:
-  rpban:
   onAdmin:
   offAdmin:
+  plecak:
+  invsee:
