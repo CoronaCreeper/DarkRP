@@ -1,10 +1,9 @@
 package darkrp;
 
-import jdk.nashorn.internal.ir.Block;
-import org.bukkit.Bukkit;
+import darkrp.Admin.offAdminCommand;
+import darkrp.Admin.onAdminCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
-import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -12,13 +11,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import javax.xml.stream.Location;
 
 public final class DarkRP extends JavaPlugin implements Listener {
 
@@ -47,6 +43,12 @@ public final class DarkRP extends JavaPlugin implements Listener {
 
         getCommand("dowod").setExecutor(new DowodCommand());
         System.out.println("[DarkRP] Loaded /dowod command");
+
+        getCommand("onAdmin").setExecutor(new onAdminCommand());
+        System.out.println("[DarkRP] Loaded /onAdmin command");
+
+        getCommand("offAdmin").setExecutor(new offAdminCommand());
+        System.out.println("[DarkRP] Loaded /offAdmin command");
     }
 
     @Override
@@ -88,6 +90,5 @@ public final class DarkRP extends JavaPlugin implements Listener {
         String reason = event.getReason();
         event.setReason(ChatColor.RED  + "Zostałeś wyrzucony z serwera DarkRP z powodu: " + ChatColor.YELLOW + reason + ChatColor.GREEN + "" +
                 "\nJeżeli uważasz że zostałeś wyrzucony niesłusznie, skontaktuj się z nami przez discorda - " + ChatColor.RED + "\nhttps://discord.gg/ApfNsmGcJP");
-        //event.get(ChatColor.RED + p.getName() + ChatColor.GREEN + " został wyrzucony z serwera DarkRP z powodu " + ChatColor.RED + reason);
     }
 }

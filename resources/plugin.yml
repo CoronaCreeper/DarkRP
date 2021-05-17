@@ -11,3 +11,6 @@ commands:
   wymiana:
   set:
   dowod:
+  rpban:
+  onAdmin:
+  offAdmin:
