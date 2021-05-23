@@ -1,4 +1,4 @@
-package darkrp;
+package darkrp.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

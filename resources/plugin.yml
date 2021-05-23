@@ -12,3 +12,9 @@ commands:
   offAdmin:
   plecak:
   invsee:
+  stworzdowod:
+  pay:
+  wizytowka:
+  buy:
+  ulecz:
+    permission: rp.lekarz.leczenie

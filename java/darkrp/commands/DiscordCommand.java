@@ -1,4 +1,4 @@
-package darkrp;
+package darkrp.commands;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;

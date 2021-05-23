@@ -1,26 +1,30 @@
 package darkrp;
 
-import darkrp.Admin.offAdminCommand;
-import darkrp.Admin.onAdminCommand;
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import darkrp.commands.Admin.offAdminCommand;
+import darkrp.commands.Admin.onAdminCommand;
+import darkrp.commands.*;
+import darkrp.event.*;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public final class DarkRP extends JavaPlugin implements Listener {
+
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
+        this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new QuitEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new DeathEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new moveEvent(), this);
+
+
+
+
+        getConfig().addDefault("domyslny_hajs","15000");
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
         System.out.println("[DarkRP] Loaded core...");
 
         getCommand("med").setExecutor(new MedCommand());
@@ -44,48 +48,22 @@ public final class DarkRP extends JavaPlugin implements Listener {
         getCommand("plecak").setExecutor(new PlecakCommand());
         System.out.println("[DarkRP] Loaded /plecak command");
 
-        getCommand("invsee").setExecutor(new invseeCommand());
+        getCommand("invsee").setExecutor(new darkrp.invseeCommand());
         System.out.println("[DarkRP] Loaded /invsee command");
-    }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
+        getCommand("stworzdowod").setExecutor(new stworzdowodCommand());
+        System.out.println("[DarkRP] Loaded /stworzdowd command");
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerJoin(PlayerJoinEvent event) {
+        getCommand("wizytowka").setExecutor(new wizytowkaCommand());
+        System.out.println("[DarkRP] Loaded /wizytowka command");
 
-        Player p = event.getPlayer();
-        event.setJoinMessage(ChatColor.GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.GRAY + "] " + ChatColor.AQUA + p.getName());
-        p.sendMessage(
-                ChatColor.YELLOW + "Witaj " + p.getName() + ChatColor.GREEN +
-                        "\nSprawdź regulamin używając " + ChatColor.RED + "/regulamin" + ChatColor.GREEN +
-                        "\nSprawdź zasady RolePlay używając " + ChatColor.RED + "/rp" + ChatColor.GREEN +
-                        "\nDołacz na serwer discord używając " + ChatColor.RED + "/discord");
-        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 255));
-    }
+        getCommand("pay").setExecutor(new payCommand());
+        System.out.println("[DarkRP] Loaded /pay command");
 
-    @EventHandler(priority = EventPriority.LOW)
-    public void onPlayerLeave(PlayerQuitEvent event) {
+        getCommand("buy").setExecutor(new buyCommand());
+        System.out.println("[DarkRP] Loaded /buy command");
 
-        Player p = event.getPlayer();
-        event.setQuitMessage(ChatColor.GRAY + "[" + ChatColor.GREEN + "-" + ChatColor.GRAY + "] " + ChatColor.AQUA + p.getName());
-    }
-
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        Player p = event.getEntity().getPlayer();
-        String reason = event.getDeathMessage();
-        event.setDeathMessage(ChatColor.RED + p.getName() + " nie żyje");
-    }
-
-    @EventHandler
-    public void onPlayerKick(PlayerKickEvent event) {
-        Player p = event.getPlayer();
-        String reason = event.getReason();
-        event.setReason(ChatColor.RED  + "Zostałeś wyrzucony z serwera DarkRP z powodu: " + ChatColor.YELLOW + reason + ChatColor.GREEN + "" +
-                "\nJeżeli uważasz że zostałeś wyrzucony niesłusznie, skontaktuj się z nami przez discorda - " + ChatColor.RED + "\nhttps://discord.gg/ApfNsmGcJP");
+        getCommand("ulecz").setExecutor(new leczenieCommand());
+        System.out.println("[DarkRP] Loaded /ulecz command");
     }
 }
